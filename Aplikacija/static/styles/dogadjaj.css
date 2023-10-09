@@ -1,0 +1,128 @@
+/* dogadjaj.css */
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.event-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#event-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#event-organizer {
+  font-size: 18px;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+#event-description {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.event-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.event-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.event-info p,
+.event-sport p,
+.event-music p,
+.event-movie p {
+  margin: 0;
+}
+
+.info-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.info-value {
+  color: #ccc;
+}
+
+.event-sales {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.sales-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sales-list li {
+  margin-bottom: 5px;
+}
+
+.event-description p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.event-tickets .ticket {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ticket-info p {
+  margin: 0;
+}
+
+.ticket-purchase .error-message {
+  color: red;
+}
+
+.total-price {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.event-tickets-left {
+  margin-top: 20px;
+}
+
+.event-tickets-left h4 {
+  margin: 0;
+}
+
+.event-tickets-left span {
+  margin-right: 5px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #fff;
+  border-color: #ffc107;
+}
+
+.error-message {
+  font-size: 14px;
+}
+
+.event-description{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+

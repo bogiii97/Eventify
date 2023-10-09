@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Eventify</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 text-center mb-2">
+                <nav class="navbar navbar-expand-lg text-center bg-info-subtle p-2 rounded">
+                    <a class="navbar-brand" href="index.html">Eventify</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                          <a class="nav-link" href="index.html">Početna</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="interefejs_grupe_dogadjaja.html">Sport</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link active" href="interefejs_grupe_dogadjaja.html">Muzika</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="interefejs_grupe_dogadjaja.html">Pozorište</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="interefejs_grupe_dogadjaja.html">Žurka</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="p-2">
+                        <button class="btn btn-light mr-2" onclick="window.location.href='login.html';">Prijava</button>
+                        
+                    </div>
+                  </nav>
+            </div>
+            
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8 text-center">
+             izvodjac - naziv_dogadjaja
+          </div>
+          <div class="col-sm-4">
+             slika_dogadjaja
+          </div>
+          <hr>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                Informacije o dogadjaju:
+            </div>
+            <div class="col-sm-12 text-center">
+                Izvodjac: naziv_izvodjaca<br>
+                Datum: datum_odrzavanja<br>
+                Mesto: mesto_odrzavanja<br>
+                Cena karte: cena_karte <br>
+            </div>
+            <div class="col-sm-8">
+                Broj raspolozivih karata: broj_karata
+            </div>
+            <div class="col-sm-4">
+                <div class="btn" onclick="window.location.href='kupiKartu.html';"style="background-color: lightblue; ">Kupi/rezervisi kartu</div>
+            </div>
+            <div class="col-sm-12">Organizator: organizator</div>
+            <div class="col-sm-12">
+              <form>
+                <div class="form-group m-2">
+                    Prodajna mesta:
+                    <select id="prodajna_mesta" name="prodajna_mesta">
+                      <option value="prodajno_mesto_1">prodajno mesto 1</option>
+                      <option value="prodajno_mesto_2">prodajno mesto 2</option>
+                      <option value="prodajno_mesto_3">prodajno mesto 3</option>
+                      <option value="prodajno_mesto_4">prodajno mesto 4</option>
+                      <option value="prodajno_mesto_5">prodajno mesto 5</option>
+                    </select> 
+                </div>
+              </form>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+

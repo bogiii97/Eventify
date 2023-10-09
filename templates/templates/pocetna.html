@@ -1,0 +1,135 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="{% static 'styles/pocetna.css' %}">
+{% endblock %}
+
+{% block sadrzaj %}
+    <div class="container-fluid">
+        <div class="row justify-content-center p-2">
+            <h2 class="text-center" >NAŠIH TOP 5</h2>
+            <hr>
+            {% if pozoriste_dog %}
+                <div class="card border">
+                    <img class="card-img-top img-fluid rounded-1" src="{{ pozoriste_dog.slika.url }}"
+                         alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pozoriste_dog.naziv }}</h5>
+                        <p class="card-text">{{ pozoriste_dog.kratak_opis }}</p>
+                        <a href="{% url 'dogadjaj' pozoriste_dog.id %}" class="btn btn-light">Više detalja</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if sport_dog %}
+                <div class="card border">
+                    <img class="card-img-top img-fluid rounded-1" src="{{ sport_dog.slika.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ sport_dog.naziv }}</h5>
+                        <p class="card-text">{{ sport_dog.kratak_opis }}</p>
+                        <a href="{% url 'dogadjaj' sport_dog.id %}" class="btn btn-light">Više detalja</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if muzika_dog %}
+                <div class="card border">
+                    <img class="card-img-top img-fluid rounded-1" src="{{ muzika_dog.slika.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ muzika_dog.naziv }}</h5>
+                        <p class="card-text">{{ muzika_dog.kratak_opis }}</p>
+                        <a href="{% url 'dogadjaj' muzika_dog.id %}" class="btn btn-light">Više detalja</a>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if zurka_dog %}
+                <div class="card border">
+                    <img class="card-img-top img-fluid rounded-1" src="{{ zurka_dog.slika.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ zurka_dog.naziv }}</h5>
+                        <p class="card-text">{{ zurka_dog.kratak_opis }}</p>
+                        <a href="{% url 'dogadjaj' zurka_dog.id %}" class="btn btn-light">Više detalja</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if ostalo_dog %}
+                <div class="card border">
+                    <img class="card-img-top img-fluid rounded-1" src="{{ ostalo_dog.slika.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ostalo_dog.naziv }}</h5>
+                        <p class="card-text">{{ ostalo_dog.kratak_opis }}</p>
+                        <a href="{% url 'dogadjaj' ostalo_dog.id %}" class="btn btn-light">Više detalja</a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+        <div class="row justify-content-center p-4">
+            <h2 class="text-center">IZDVAJAMO</h2>
+            <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            {% for dogadjaj in top_dogadjaji_prvi %}
+                                <div class="card border">
+                                    <img class="card-img-top img-fluid rounded-1" src="{{ dogadjaj.slika.url }}"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ dogadjaj.naziv }}</h5>
+                                        <p class="card-text">{{ dogadjaj.kratak_opis }}</p>
+                                        <a href="{% url 'dogadjaj' dogadjaj.id %}" class="btn btn-light">Više
+                                            detalja</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            {% for dogadjaj in top_dogadjaji_drugi %}
+                                <div class="card border">
+                                    <img class="card-img-top img-fluid rounded-1" src="{{ dogadjaj.slika.url }}"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ dogadjaj.naziv }}</h5>
+                                        <p class="card-text">{{ dogadjaj.kratak_opis }}</p>
+                                        <a href="{% url 'dogadjaj' dogadjaj.id %}" class="btn btn-light">Više
+                                            detalja</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            {% for dogadjaj in top_dogadjaji_treci %}
+                                <div class="card border">
+                                    <img class="card-img-top img-fluid rounded-1" src="{{ dogadjaj.slika.url }}"
+                                         alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ dogadjaj.naziv }}</h5>
+                                        <p class="card-text">{{ dogadjaj.kratak_opis }}</p>
+                                        <a href="{% url 'dogadjaj' dogadjaj.id %}" class="btn btn-light">Više
+                                            detalja</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-5" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-5" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

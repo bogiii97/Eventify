@@ -1,0 +1,114 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/profil_backup.css' %}">
+    <script src="{% static 'scripts/profil_skripta.js' %}"></script>
+{% endblock %}
+
+{% block sadrzaj %}
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+
+                <div class="row profil rounded">
+                     <div class="col-sm-3 text-center">
+                        <img src="{{ korisnik.slika.url }}" class="profilna_slika">
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="col-sm-12">Informacije o korisniku</div>
+                        <hr>
+                        <form method="post" action="{% url 'azuriranje_profila' %}" id="azuriraj-forma">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-4">Ime</div>
+                                <div class="col-sm-4">Prezime</div>
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-4">
+                                    <input type="text" name="ime" id="ime" placeholder="{{ korisnik.ime }}" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" name="prezime" id="prezime" placeholder="{{ korisnik.prezime }}" style="width: 100%;">
+                                </div>
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-12">Email</div>
+                                <div class="col-sm-8">
+                                    <input type="text" name="email" id="email" autocomplete="off" placeholder="{{ korisnik.email }}" style="width: 100%;">
+                                    <span class="d-none" id="error-email" style="color: red"></span>
+                                </div>
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-12">Lozinka</div>
+                                <div class="col-sm-8">
+                                    <input type="password" name="lozinka" id="lozinka" autocomplete="off" placeholder="lozinka" style="width: 100%;">
+                                    <span class="d-none" id="error-lozinka" style="color: red"></span>
+                                </div>
+                                <div class="col-sm-4"></div>
+                                <div class="col-sm-8 text-center">
+                                    <button type="submit" class="btn" style="margin: 15px">Ažurirajte profil</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <button class="btn aktivirano" id="poseceni_dugme">Posećeni događaji</button>
+                    <button class="btn" id="recenzije_dugme">Moje recenzije</button>
+                    {% if organizovani_dogadjaji %}
+                        <button class="btn" id="organizovani_dugme">Organizovani događaji</button>
+                    {% endif %}
+                </div>
+
+                <div class="row event-container" id="poseceni_dogadjaji">
+                    <div class="col-sm-12">
+                        {% for dogadjaj in poseceni_dogadjaji %}
+                            <div class="event-card">
+                              <img class="event-picture" src="{{ dogadjaj.slika.url }}" alt="Event Picture">
+                              <div class="event-details">
+                                <h5>{{ dogadjaj.naziv }}</h5>
+                                <p>{{ dogadjaj.kratak_opis }}</p>
+                                 <p class="ime-organizatora">Organizovan od strane:  <a href="{% url 'profil_organizatora' dogadjaj.organizator.id %}">{{ dogadjaj.organizator }}</a></p>
+                              </div>
+                                <div class="col-sm-2 text-center d-flex align-items-center">
+                                    <button class="btn btn-light" onclick="prebaciNaUrl('{% url 'recenzija' dogadjaj.id %}')"> Ostavi recenziju</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row d-none event-container" id="organizovani_dogadjaji">
+                    <div class="col-sm-12">
+                        {% for dogadjaj in organizovani_dogadjaji %}
+                            <div class="event-card">
+                              <img class="event-picture" src="{{ dogadjaj.slika.url }}" alt="Event Picture">
+                              <div class="event-details">
+                                <h5>{{ dogadjaj.naziv }}</h5>
+                                <p>{{ dogadjaj.kratak_opis }}</p>
+                              </div>
+                                <div class="d-flex justify-content-center text-center">
+                                    <button class="btn btn-light" onclick="prebaciNaUrl('{% url 'dogadjaj_informacije' dogadjaj.id %}')"> Pregledaj informacije o događaju</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="row d-none event-container" id="moje_recenzije">
+                    <div class="col-sm-12">
+                        {% for recenzija in recenzije %}
+                            <div class="recension-card">
+                              <p>{{ recenzija.komentar }}</p>
+                                  <p style="font-weight: bold;">Ocena:{{ recenzija.ocena }}<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px; margin-bottom: 5px"></p>
+                              <p class="ime-organizatora">Događaj: {{ recenzija.dogadjaj.naziv}}</p>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+{% endblock %}

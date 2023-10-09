@@ -1,0 +1,233 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    {# <script src="{% static 'scripts/.js' %}"></script> #}
+
+    <style>
+        .border {
+            padding-top: 10px;
+            padding-bottom: 100px;
+            padding-left: 120px;
+            padding-right: 120px;
+            color: white;
+        }
+    </style>
+
+    <script>
+        var successMessage = document.getElementById('success-message');
+
+        // Prikaži poruku o uspešnom slanju forme
+        function showSuccessMessage() {
+            successMessage.innerHTML = 'Pitanje uspešno poslato korisničkoj podršci.';
+        }
+
+        function toggleAnswer1() {
+            var answer1 = document.getElementById("answer1");
+            var questionButton1 = document.getElementsByClassName("question-button1")[0];
+            var answerButton1 = document.getElementsByClassName("answer-button1")[0];
+
+
+
+            if (answer1.style.display === "none") {
+                answer1.style.display = "block";
+                questionButton1.style.display = "none";
+                answerButton1.style.display = "block";
+            } else {
+                answer1.style.display = "none";
+                questionButton1.style.display = "block";
+                answerButton1.style.display = "none";
+            }
+        }
+
+        function toggleAnswer2() {
+            var answer2 = document.getElementById("answer2");
+            var questionButton2 = document.getElementsByClassName("question-button2")[0];
+            var answerButton2 = document.getElementsByClassName("answer-button2")[0];
+
+
+            if (answer2.style.display === "none") {
+                answer2.style.display = "block";
+                questionButton2.style.display = "none";
+                answerButton2.style.display = "block";
+            } else {
+                answer2.style.display = "none";
+                questionButton2.style.display = "block";
+                answerButton2.style.display = "none";
+            }
+        }
+
+        function toggleAnswer3() {
+            var answer3 = document.getElementById("answer3");
+            var questionButton3 = document.getElementsByClassName("question-button3")[0];
+            var answerButton3 = document.getElementsByClassName("answer-button3")[0];
+
+
+            if (answer3.style.display === "none") {
+                answer3.style.display = "block";
+                questionButton3.style.display = "none";
+                answerButton3.style.display = "block";
+            } else {
+                answer3.style.display = "none";
+                questionButton3.style.display = "block";
+                answerButtone.style.display = "none";
+            }
+        }
+
+        function toggleAnswer4() {
+            var answer4 = document.getElementById("answer4");
+            var questionButton4 = document.getElementsByClassName("question-button4")[0];
+            var answerButton4 = document.getElementsByClassName("answer-button4")[0];
+
+
+            if (answer4.style.display === "none") {
+                answer4.style.display = "block";
+                questionButton4.style.display = "none";
+                answerButton4.style.display = "block";
+            } else {
+                answer4.style.display = "none";
+                questionButton4.style.display = "block";
+                answerButton4.style.display = "none";
+            }
+        }
+
+        function toggleAnswer5() {
+            var answer5 = document.getElementById("answer5");
+            var questionButton5 = document.getElementsByClassName("question-button5")[0];
+            var answerButton5 = document.getElementsByClassName("answer-button5")[0];
+
+
+            if (answer5.style.display === "none") {
+                answer5.style.display = "block";
+                questionButton5.style.display = "none";
+                answerButton5.style.display = "block";
+            } else {
+                answer5.style.display = "none";
+                questionButton5.style.display = "block";
+                answerButton5.style.display = "none";
+            }
+        }
+
+    </script>
+
+
+{% endblock %}
+
+{% block sadrzaj %}
+    <br><br><br>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-4  border rounded border-left">
+            <br>
+            <h2 class="text-center">Često postavljena pitanja</h2>
+            <br><br>
+            <ul class="larger-font custom-list">
+                <li class="mb-4">
+                    <div>
+                        <strong>Koje vrste plaćanja prihvatate za kupovinu karata?</strong>
+                        <br>
+                        <button class="question-button1 btn btn-light mr-2" onclick="toggleAnswer1()">Pogledaj odgovor
+                        </button>
+                    </div>
+                    <div id="answer1" style="display: none;">
+                        <p>Prihvatamo različite načine plaćanja, uključujući kreditne kartice (Visa, Mastercard,
+                            American Express),
+                            debitne kartice, PayPal i ostale lokalno prihvaćene načine plaćanja.</p>
+                        <button class="answer-button1 btn btn-light mr-2" onclick="toggleAnswer1()">Zatvori odgovor
+                        </button>
+                    </div>
+                </li>
+                <hr>
+                <li class="mb-4">
+                    <div>
+                        <strong>Što se događa ako mi se ne sviđa moje sedište ili mesto na događaju?</strong><br>
+                        <button class="question-button2 btn btn-light mr-2" onclick="toggleAnswer2()">Pogledaj odgovor
+                        </button>
+                    </div>
+                    <div id="answer2" style="display: none;">
+                        <p>Ako vam se ne sviđa sediste ili mesto koje ste dobili, molimo vas da nas odmah kontaktirate
+						putem naše korisničke podrške. U nekim slučajevima, možda ćemo moći pružiti
+						alternativna sedišta ili rešiti vašu brigu na drugi način, zavisno od uslova prodaje karata i raspoloživosti.</p>
+                        <button class="answer-button2 btn btn-light mr-2" onclick="toggleAnswer2()">Zatvori odgovor
+                        </button>
+                    </div>
+                </li>
+                <hr>
+                <li class="mb-4">
+                    <div>
+                        <strong>Kako mogu dobiti povrat novca ako se događaj otkazuje?</strong><br>
+                        <button class="question-button3 btn btn-light mr-2" onclick="toggleAnswer3()">Pogledaj odgovor
+                        </button>
+                    </div>
+                    <div id="answer3" style="display: none;">
+                        <p>Ako je događaj otkazan, naša korisnička podrška pružiće vam informacije o procesu povrata novca.
+                            Zavisno od načina plaćanja i uslova prodaje karata, povrat novca obično će biti obrađen putem istog
+                            načina plaćanja kojim ste izvršili kupovinu.</p>
+                        <button class="answer-button3 btn btn-light mr-2" onclick="toggleAnswer3()">Zatvori odgovor
+                        </button>
+                    </div>
+                </li>
+                <hr>
+                <li class="mb-4">
+                    <div>
+                        <strong>Koliko vremena pre događaja mogu kupiti karte?</strong><br>
+                        <button class="question-button4 btn btn-light mr-2" onclick="toggleAnswer4()">Pogledaj odgovor
+                        </button>
+                    </div>
+                    <div id="answer4" style="display: none;">
+                        <p>Dostupnost karata i rokovi kupovine zavise od događaja. Preporučujemo vam da karte kupite što je
+                            pre moguće kako biste osigurali svoje mesto. Neke popularne događaje može biti potrebno rezervirati
+                            unapred zbog ograničenog broja karata.</p><br>
+                        <button class="answer-button4 btn btn-light mr-2" onclick="toggleAnswer4()">Zatvori odgovor
+                        </button>
+                    </div>
+                </li>
+                <hr>
+                <li class="mb-4">
+                    <div>
+                        <strong>Mogu li pozajmiti ili prodati svoje karte nekom drugom?</strong><br>
+                        <button class="question-button5 btn btn-light mr-2" onclick="toggleAnswer5()">Pogledaj odgovor
+                        </button>
+                    </div>
+                    <div id="answer5" style="display: none;">
+                        <p>Pitanje pozajmljivanja ili prodaje karata drugoj osobi zavisi od uslova prodaje karata i politike
+                            organizatora događaja. Molimo vas da pročitate pravila i uslove pre nego što pokušate pozajmiti ili prodati svoje karte.</p>
+                        <button class="answer-button5 btn btn-light mr-2" onclick="toggleAnswer5()">Zatvori odgovor
+                        </button>
+                    </div>
+                </li>
+                <!-- Dodajte ostala pitanja i odgovore -->
+            </ul>
+        </div>
+        <div class="col-lg-2"></div>
+        <div class="col-lg-4 text-center border rounded border-right">
+            <br>
+            <h2 class="text-center">Postavi pitanje</h2>
+            <br>
+            <form method="post">
+                <div class="form-group" >
+                    <input type="email" class="form-control" name="email" placeholder="Unesite email" required
+                           oninvalid="this.setCustomValidity(this.validity.valueMissing ? 'Popunite ovo polje!' : 'Format email-a nije ispravan!')"
+                           oninput="this.setCustomValidity('')">
+                    <br><br>
+
+                    <textarea class="form-control" rows="5" cols="50" name="pitanje" placeholder="Unesite pitanje"
+                              required
+                              oninvalid="this.setCustomValidity('Popunite ovo polje!')"
+                              oninput="this.setCustomValidity('')"></textarea>
+
+                    <div id="success-message"></div>
+
+                    <br><br>
+                    <button type="submit" class="btn btn-light m-2 btn-lg btn-xl">Pošalji pitanje</button>
+                </div>
+                {% csrf_token %}
+
+            </form>
+        </div>
+        <div class="col-lg-1"></div>
+
+    </div>
+
+
+{% endblock %}

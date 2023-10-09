@@ -1,0 +1,156 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    <script src="{% static 'scripts/dogadjaj.js' %}"></script>
+    <!--<script type="text/javascript">
+        var tipovi = "{{ tipovi }}";
+        var preostaloOdSvakogTipa = "{{ preostaloOdSvakogTipa }}"
+    </script>-->
+    <script type="text/javascript">
+        var tipovi = JSON.parse('{{ tipovi|escapejs }}');
+        var preostaloOdSvakogTipa = JSON.parse('{{ preostaloOdSvakogTipa|escapejs }}');
+        var dogadjaj_id = JSON.parse('{{ dogadjaj_id|escapejs }}');
+        var cene = JSON.parse('{{ cene|escapejs }}');
+    </script>
+{% endblock %}
+
+{% block sadrzaj %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-8 text-center">
+                <br><br>
+                <h1>{{ dogadjaj.naziv }}</h1>
+                <p>Organizator: {{ dogadjaj.organizator }}</p>
+                <p>{{ dogadjaj.kratak_opis }}</p>
+            </div>
+            <div class="col-4 text-center">
+
+                <img class="img-fluid img-thumbnail m-4" src="{{ dogadjaj.slika.url }}" alt="">
+            </div>
+            <hr>
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col-sm-12">
+                <br>
+                <h1>Informacije o događaju:</h1>
+            <br>
+            </div>
+
+        <div class="row text-center" style="padding-bottom: 20px">
+
+            <div class="col-4">
+                <span>Grad: </span>
+                <u>{{ dogadjaj.grad }}</u>
+                <br>
+            </div>
+            <div class="col-4">
+                <span>Adresa: </span>
+                <u>{{ dogadjaj.adresa }}</u>
+                <br>
+            </div>
+            <div class="col-4">
+                <span>Datum i vreme: </span>
+                <u>{{ dogadjaj.datum_vreme }}</u>
+                <br>
+            </div>
+
+        </div>
+
+        <hr>
+            {% if dogadjaj.naziv_sporta %}
+                <div class="col-6 text-center">
+                    Naziv sporta:
+                    {{ dogadjaj.naziv_sporta }}
+                </div>
+                <div class="col-6 text-center">
+                    Učesnici:
+                    {{ dogadjaj.ucesnici }}
+                </div>
+            {% endif %}
+            {% if dogadjaj.izvodjac and not dogadjaj.vrsta_muzike %}
+                <div class="col-12">
+                    Izvodjac: {{ dogadjaj.izvodjac }}
+                </div>
+            {% endif %}
+            {% if dogadjaj.zanr %}
+                <div class="col-4">
+                    Zanr:
+                    {{ dogadjaj.zanr }}
+                </div>
+                <div class="col-4">
+                    Glumci:
+                    {{ dogadjaj.glumci }}
+                </div>
+                <div class="col-4">
+                    Trajanje:
+                    {{ dogadjaj.trajanje }}
+                </div>
+            {% endif %}
+            {% if dogadjaj.vrsta_muzike %}
+                <div class="col-6">Vrsta muzike: {{ dogadjaj.vrsta_muzike }}</div>
+                <div class="col-6">Izvodjac: {{ dogadjaj.izvodjac }}</div>
+            {% endif %}
+
+        <div class="row text-center" style="padding-bottom: 20px">
+            <div class="col-6">
+                <h2>Prodajna mesta: </h2>
+                <ul class="list-group">
+                    {% for prodajno_mesto in dogadjaj.prodaje_se.all %}
+                        <li class="list-group-item list-group-item-info">
+                            {{ prodajno_mesto.naziv }}, {{ prodajno_mesto.adresa }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-6">
+                <p style="padding-top: 40px">
+                    {{ dogadjaj.opis }}
+                </p>
+            </div>
+        </div>
+        <div class="row text-center">
+            {% for karta in karte %}
+
+                <div class="col-6">
+
+                    Tip: {{ karta.tip }} &emsp;&emsp;
+                    Cena: {{ karta.cena }} &emsp;&emsp;
+                    Količina: <input type="text" style="width: 50px" id="{{ karta.tip }}"> &emsp;&emsp;
+                </div>
+                {% if karta.tip == prviTip %}
+                    <div class="col-6">
+                        <label id="kupiLabel">
+                            <span id="neMozeKupi" style="color: red"></span> &emsp;
+                            <a class="btn btn-outline-warning btn btn-lg" id="kupi">Kupi kartu</a>
+                        </label>
+                    </div>
+                {% else %}
+                    <div class="col-6"></div>
+                {% endif %}
+            {% endfor %}
+        <div class="row text-center" style="margin-top: 10px">
+            <div class="col-6">
+                <h4>Ukupna cena: <span id="ukCena">0</span><span> din</span></h4>
+            </div>
+            <div class="col-6"></div>
+        </div>
+        </div>
+        <div class="row text-center" style="margin-top: 10px">
+            <div class="col-6">
+            Preostalo karata:
+            {% for broj in preostaloOdSvakogTipa1 %}
+                <span id="{{ broj }}"></span>{{ broj }} &nbsp;
+            {% endfor %}
+            </div>
+            <div class="col-6"></div>
+        </div>
+        </div>
+    <br>
+    </div>
+{% endblock %}
+
+

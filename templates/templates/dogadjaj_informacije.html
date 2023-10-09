@@ -1,0 +1,51 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/profil_backup.css' %}">
+    <script src="{% static 'scripts/profil_skripta.js' %}"></script>
+{% endblock %}
+
+{% block sadrzaj %}
+     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+
+                <div class="row profil rounded">
+                    <div class="col-sm-3 text-center">
+                        <h4>Informacije o "{{ dogadjaj.naziv }}"</h4>
+                        <hr>
+                        <div><h5>Broj prodatih karata:</h5> {{ broj_prodatih_karata }}</div>
+                        <div><h5>Broj rezervisanih karata:</h5> {{ broj_rezervisanih_karata }}</div>
+                        <div><h5>Broj slobodnih karata:</h5> {{ broj_slobodnih_karata }}</div>
+                        <div><h5>Ukupan broj recenzija:</h5> {{ broj_recenzija.ukupno }}</div>
+                        <div><h5>Broj recenzija sa ocenom 5<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px">:</h5> {{ broj_recenzija.ocena5 }}</div>
+                        <div><h5>Broj recenzija sa ocenom 4<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px">:</h5> {{ broj_recenzija.ocena4 }}</div>
+                        <div><h5>Broj recenzija sa ocenom 3<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px">:</h5> {{ broj_recenzija.ocena3 }}</div>
+                        <div><h5>Broj recenzija sa ocenom 2<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px">:</h5> {{ broj_recenzija.ocena2 }}</div>
+                        <div><h5>Broj recenzija sa ocenom 1<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px">:</h5> {{ broj_recenzija.ocena1 }}</div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="text-center">
+                            <h4>Recenzije</h4>
+                            <hr>
+                        </div>
+                        <div class="event-container">
+                            {% for recenzija in recenzije %}
+                                <div class="recension-card">
+                                  <p>{{ recenzija.komentar }}</p>
+                                      <p style="font-weight: bold;">Ocena:{{ recenzija.ocena }}<img src="../../media/slike/pozadine/small-star-icon-17.png" style="width: 20px; height: 20px; margin-bottom: 5px"></p>
+                                  <p class="ime-organizatora">- {{ recenzija.korisnik.ime}}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+{% endblock %}

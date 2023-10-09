@@ -1,0 +1,249 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/objava_dogadjaja.css' %}">
+    <script src="{% static 'scripts/objava_dogadjaja.js' %}"></script>
+{% endblock %}
+{% block sadrzaj %}
+    <div class="container">
+
+        <div class="row form-info rounded-1">
+            <div class="col-12">
+                <form novalidate id="objavaForm" method="post" enctype="multipart/form-data"
+                      action="{% url 'kreiranje_dogadjaja' %}">
+                    {% csrf_token %}
+                    <div class="row m-1">
+                        <div class="col text-center">
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="tipDogadjaja" id="pozoristeRadio"
+                                       value="pozoriste">
+                                <label class="btn btn-outline-light" for="pozoristeRadio">
+                                    Pozorište
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="tipDogadjaja" id="muzikaRadio"
+                                       value="muzika">
+                                <label class="btn btn-outline-light" for="muzikaRadio">
+                                    Muzički događaj
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="tipDogadjaja" id="sportRadio" value="sport">
+                                <label class="btn btn-outline-light" for="sportRadio">
+                                    Sportski događaj
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="tipDogadjaja" id="zurkaRadio" value="zurka">
+                                <label class="btn btn-outline-light" for="zurkaRadio">
+                                    Žurka
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="btn-check" type="radio" name="tipDogadjaja" id="ostaloRadio"
+                                       value="ostalo" checked>
+                                <label class="btn btn-outline-light" for="ostaloRadio">
+                                    Ostalo
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row p-2">
+                        <div class="col-6 text-end">
+                            <div class="p-2">
+                                <strong>Naziv: &nbsp;</strong>
+                                {{ form.naziv }}
+                            </div>
+                            <div class="p-2">
+                                <strong>Grad: &nbsp;</strong>
+                                {{ form.grad }}
+                            </div>
+                            <div class="p-2">
+                                <strong>Adresa: &nbsp;</strong>
+                                {{ form.adresa }}
+                            </div>
+                            <div class="p-2">
+                                <strong>Vreme: &nbsp;</strong>
+                                {{ form.datum_vreme }}
+                            </div>
+
+                            <div class="p-2">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                    Prodajna mesta
+                                </button>
+                                <ul class="dropdown-menu">
+                                    {% for value, text in form.prodajno_mesto.field.choices %}
+                                        <li class="dropdown-item">
+                                            <input type="checkbox" name="prodajno_mesto" value="{{ value }}">
+                                            &nbsp{{ text }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+
+                        </div>
+                        <div class="col-6">
+                            {{ form.kratak_opis }}
+                            <br>
+                            {{ form.opis }}
+                            <br>
+                            <div>
+                                <strong>Slika: &nbsp;</strong>
+                                {{ form.slika }}
+                            </div>
+                        </div>
+                        <div class="text-center row pozoriste d-none">
+                            <div class="col-4">
+                                <label for="id_zanr">Žanr:</label>
+                                <input type="text" maxlength="50" name="zanr" id="id_zanr">
+                            </div>
+                            <div class="col-4">
+                                <label for="id_glumci">Glumci:</label>
+                                <input type="text" name="glumci" maxlength="100" id="id_glumci">
+                            </div>
+                            <div class="col-4">
+                                <label for="id_trajanje">Trajanje:</label>
+                                <input type="text" pattern="\d{2}:\d{2}" placeholder="hh:mm" name="trajanje"
+                                       id="id_trajanje">
+                            </div>
+                        </div>
+                        <div class="text-center row sport d-none">
+                            <div class="col-6 text-end">
+                                <label for="id_ucesnici">Učesnici:</label>
+                                <input type="text" name="ucesnici" maxlength="100" id="id_ucesnici">
+                            </div>
+                            <div class="col-6 text-start">
+                                <label for="id_naziv_sporta">Naziv sporta:</label>
+                                <input type="text" name="naziv_sporta" id="id_naziv_sporta" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="text-center row muzika d-none">
+                            <div class="col-12 text-center">
+                                <label for="id_izvodjac">Izvođač:</label>
+                                <input type="text" name="izvodjac" id="id_izvodjac" maxlength="50">
+                            </div>
+                        </div>
+                        <div class="text-center row zurka d-none">
+                            <div class="col-6 text-end">
+                                <label for="id_vrsta_muzike">Vrsta muzike:</label>
+                                <input type="text" name="vrsta_muzike" id="id_vrsta_muzike" maxlength="50">
+                            </div>
+                            <div class="col-6 text-start">
+                                <label for="id_izv">Izvođač:</label>
+                                <input type="text" name="izvodjac_zurka" id="id_izv" maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row text-center" id="karte">
+
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-12 text-center p-2">
+                            <button type="submit" class="btn btn-success">Objavi događaj</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row text-center">
+                <div class="col-12 text-center p-2" id="novaKarta">
+                    <button type="submit" class="btn btn-light" id="novaKartaDugme">
+                        Novi tip karte
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="alert alert-danger alert-naziv alert-dismissible fade show d-none ms-2" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Naziv je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-adresa alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Adresa je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-vreme alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Vreme je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-slika alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Slika je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-datum alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Izabrani datum i vreme mora biti nakon trenuntnog vremena.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-kratak-opis alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Kratak opis je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-opis alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Opis je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-karata alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Mora postojati bar jedna karta.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-cene alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Cena je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-negativna-cena alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Cena karte mora biti pozitivna.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-broja alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Broj karata je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-negativan-broj alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Broj karata mora biti pozitivan broj.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-tipa alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Tip karte je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-zanr alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Zanr je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-glumci alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Glucmi su obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-nema-trajanje alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Trajanje je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-format-trajanje alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Trajanje je u pogrešnom formatu.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-izvodjac alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Izvođač je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-ucesnici alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Učesnici su obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-naziv-sporta alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Naziv sporta je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-danger alert-vrsta-muzike alert-dismissible fade show d-none" role="alert">
+                    <strong>Neuspešno objavljivanje!</strong> Vrsta muzike je obavezno polje.
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

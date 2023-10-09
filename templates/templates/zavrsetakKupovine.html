@@ -1,0 +1,39 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+    {% load static %}
+{% endblock %}
+
+{% block sadrzaj %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <form class="m-2">
+                <div class="form-group border border-info rounded p-3">
+                     <br>
+                     {% if status == "0" %}
+                        <h2>Transakcija završena</h2>
+                    {% else %}
+                         <h2>Rezervacija završena</h2>
+                    {% endif %}
+                     <br>
+                     <img src="../../media/slike/tick.png" width="250px" height="250px">
+                    <br>
+                    <br>
+                    {% if status == "0" %}
+                        <b><div>Uspešno ste kupili kartu za dogadjaj!</div></b>
+                        <u><b><div>Vaše karte su upravo poslate na mejl</div></b></u>
+                    {% else %}
+                        <b><div>Uspešno ste rezervisali kartu za dogadjaj!</div></b>
+                        <u><b><div>Vašu kartu trebate preuzeti u narednih 24h</div></b></u>
+                    {% endif %}
+                    <br>
+                    <div>Ovde se možete vratiti na početnu
+                       <a href="{% url 'pocetna' %}" class="btn btn-light">Početna</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

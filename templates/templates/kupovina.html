@@ -1,0 +1,186 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+    {% load static %}
+    <script src="{% static 'scripts/kupovina.js' %}"></script>
+    <script type="text/javascript">
+        var ids = JSON.parse('{{ ids|escapejs }}');
+    </script>
+{% endblock %}
+
+{% block sadrzaj %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <form class="m-2">
+                <div class="form-group border border-light rounded p-3" id="podaciOKupcu">
+                    {% if user.is_authenticated %}
+                      <span id="proba" class="d-none">{{ user.ime }} {{user.prezime}} {{ user.email }}</span>
+                    {% endif %}
+                    <span class="d-none" id="dogadjajId" data-dogid="{{ dogId }}"></span>
+
+                     <br>
+                     <h2>Podaci o kupcu</h2>
+                     <br>
+                     <div class="progress" style="width: 50%; margin-left: 340px">
+                        <div class="progress-bar progress-bar-animated progress-bar-striped" id="pb1" style="transition:width 0.4s ease">
+                            0%
+                        </div>
+                     </div>
+                    <br>
+                   <div class="m-3">
+                       <label style="padding-right: 5px" id="imeLabela">
+                           *Ime: {{ form.ime }}
+                           <span style="color: red;" id="imeGreska"></span>
+                       </label>
+                   </div>
+
+                    <div class="row m-3">
+                       <label style="padding-right: 46px" id="prezimeLabela">
+                           *Prezime: {{ form.prezime }}
+                           <span style="color: red;" id="prezimeGreska"></span>
+                       </label>
+                   </div>
+                    <div class="row m-3">
+                       <label style="padding-right: 85px" id="mejlLabela">
+                           *E-Mejl adresa: {{ form.mejl }}
+                           <span style="color: red;" id="mejlPrazanGreska"></span>
+                           <span style="color: red" id="mejlNevalidanGreska"></span>
+                       </label>
+                   </div>
+                    <div class="row m-3">
+                       <label style="padding-right: 32px">Država: {{ form.drzava }}</label>
+                   </div>
+                    <div class="row m-3">
+                       <label style="padding-right: 18px">Grad: {{ form.grad }}</label>
+                   </div>
+                    <div class="row m-3">
+                       <label style="padding-right: 74px">Broj telefona: {{ form.brojTelefona    }}</label>
+                   </div>
+
+                    <div>
+                        <label for="kartica">Plaćanje online</label> <input type="radio" name="izborPlacanja" id="kartica" checked>
+                        &emsp;
+                        {% if imaProdajna %}
+                            <label for="preuzimanje">Rezervacija karte</label> <input type="radio" name="izborPlacanja" id="preuzimanje">
+                        {% else %}
+                            <label for="preuzimanje">Rezervacija karte</label> <input type="radio" name="izborPlacanja" id="preuzimanje" disabled>
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div style="margin-left: 35px">
+
+                     <button type="button" class="btn btn-light" id="levo1"><- Odustani</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <button type="button" class="btn btn-light" id="desno1">Nastavi -></button>
+                    </div>
+
+                    <div>&nbsp;</div>
+                </div>
+
+
+                <!--------------------------------------------------------------------------------->
+
+                <div class="form-group border border-light rounded p-3 d-none" id="pregledNarudzbine">
+                     <br>
+                     <h2>Pregled narudzbine</h2>
+                     <br>
+                     <div class="progress" style="width: 50%; margin-left: 340px">
+                        <div class="progress-bar progress-bar-animated progress-bar-striped" style="width: 33%" id="pb2">
+                            33%
+                        </div>
+                     </div>
+                    <br>
+                    <hr>
+                   <div class="m-3">
+                       <span>Događaj: {{ dogNaziv }}</span>
+                   </div>
+                    <div class="m-3">
+                        <span>Mesto i vreme: {{ dogGrad }}, {{ dogAdresa }}; {{ dogDatumVreme }} </span>
+                   </div>
+                    <div class="m-3">
+                       <span>Tip karte i količina: {{ tipKolicina }}</span>
+                   </div>
+                    <div class="m-3">
+                       <span>Cena: {{ cena }} din</span>
+                   </div>
+                    <hr>
+                    <div class="m-3">
+                        <span id="kupacImePrezime"></span>
+                    </div>
+                    <div class="m-3">
+                        <span id="kupacDrzava"></span>
+                    </div>
+                    <div class="m-3">
+                        <span id="kupacGrad"></span>
+                    </div>
+                    <div class="m-3">
+                        <span id="kupacMejl"></span>
+                    </div>
+                    <div class="m-3">
+                        <span id="kupacBrojTelefona"></span>
+                    </div>
+                    <br>
+                    <div style="margin-left: 35px">
+                        <button type="button" class="btn btn-light" id="levo2"><- Nazad</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-light" id="desno2">Plaćanje-></button>
+                    </div>
+
+                    <div>&nbsp;</div>
+                </div>
+            </form>
+
+            <!--------------------------------------------------------------------------------->
+
+            <div class="form-group border border-light rounded p-3 d-none" id="podaciSaKartice">
+                     <br>
+                     <h2>Plaćanje</h2>
+                     <br>
+                     <div class="progress" style="width: 50%; margin-left: 340px">
+                        <div class="progress-bar progress-bar-animated progress-bar-striped" style="width: 67%" id="pb3">
+                            67%
+                        </div>
+                     </div>
+                    <br>
+                    <img src="../../media/slike/placanje.png">
+                   <div class="m-3">
+                       <b><span>Iznos za placanje: 1000,00 din</span></b>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <button type="button" class="btn btn-light btn-sm" id="levo3">Odustani</button>
+
+
+                   </div>
+                    <br>
+                        <div class="m-3">
+                            <label style="margin-right: 33px">
+                                Broj kartice: {{ formK.brojKartice }}
+                                &emsp;&emsp;&emsp;
+                                <img src="../../media/slike/securePayment.png">
+
+                                <img src="../../media/slike/securePayment1.png" style="width: 90px; height: 50px">
+                            </label>
+                            
+
+                        </div>
+                        <div class="  m-3 text-center">
+                            <label>Važi do: {{ formK.vaziDo }} </label>
+                            &nbsp;&nbsp;&nbsp;
+                            <label>CVC: {{ formK.cvc }} </label>
+                        </div>
+
+
+                    <div style="margin-left: 35px; padding-top: 10px">
+                        <button type="button" class="btn btn-light btn-lg" id="desno3">Plati</button>
+                    </div>
+
+                    <div>&nbsp;</div>
+                </div>
+
+
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

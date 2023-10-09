@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-02 16:40+0200\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Please fill out this field."
+msgstr "blaa"
+

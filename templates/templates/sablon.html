@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'libraries/bootstrap.min.css' %}">
+    <script src="{% static 'libraries/bootstrap.bundle.js' %}"></script>
+
+    <script src="{% static 'libraries/jquery.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/sablon.css' %}">
+    <link rel="icon" type="image/x-icon" href="../../media/slike/logo.ico">
+    <title>Eventify</title>
+
+
+    {% block heder %}
+
+    {% endblock %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 text-center mb-2">
+            <nav class="navbar navbar-expand-lg text-center p-2 rounded" id="nav">
+                <a class="navbar-brand" href="{% url 'pocetna' %}"><img class="rounded-4" src="../../media/slike/logo.jpeg" alt="Eventify"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pocetnaLink" href="{% url 'pocetna' %}">Početna</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="sportLink" href="{% url 'sport' %}">Sport</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="muzikaLink" href="{% url 'muzika' %}">Muzika</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pozoristeLink" href="{% url 'pozoriste' %}">Pozorište</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="zurkaLink" href="{% url 'zurka' %}">Žurka</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="ostaloLink" href="{% url 'ostalo' %}">Ostalo</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-2">
+                    {% if user.is_authenticated %}
+                        <span style="color:white">{{ user.username }}</span> &nbsp;
+                        <button class="btn btn-light mr-2" id="odjavaDugme" onclick="window.location.href='{% url 'logout' %}';">Odjava</button>
+                        {% if perms.Aplikacija.add_dogadjaj  %}
+                            <button class="btn btn-light mr-2" id="novDogadjajDugme" onclick="window.location.href='{% url 'objava_dogadjaja' %}';">Nov događaj</button>
+                        {% endif %} 
+                        <a href="{% url 'profil' %}">
+{#                            <img src="../../media/slike/profile.png" alt="Profil" class="link-image rounded-4">#}
+                            <img src="{{ user.slika.url }}" alt="Profil" class="link-image rounded-5">
+                        </a>
+                    {% else %}
+                        <span style="color:white">Gost</span> &nbsp;
+                        <button class="btn btn-light mr-2 " id="prijavaDugme" onclick="window.location.href='{% url 'login' %}';">Prijava</button>
+                        <button class="btn btn-light mr-2 " id="registracijaDugme" onclick="window.location.href='{% url 'register' %}';">Registracija</button>
+                    {% endif %}
+
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+
+    <div id="sadrzaj" style="min-height: 83vh">
+    {% block sadrzaj %}
+
+    {% endblock %}
+    </div>
+    <footer id="footerId" class="container-fluid text-center p-2 rounded text-center" style="width: 98%">
+
+        <div class="row mt-3">
+
+            <div class="col-sm-7">
+                <img class="rounded-4" src="../../media/slike/logo.jpeg" alt="Eventify" width="55" height="55" style="margin-bottom: 5px">
+                &emsp;&emsp;
+                <a href="{% url 'oNama' %}" class="nav-link" style="display: inline !important;"><span style="font-size: large">O nama</span></a> &emsp;
+                <a href="{% url 'uslovi' %}" class="nav-link" style="display: inline !important;"><span style="font-size: large">Uslovi korišćenja</span></a>&emsp;
+                <a href="{% url 'privatnost' %}" class="nav-link" style="display: inline !important;"><span style="font-size: large">Politika privatnosti</span></a>&emsp;
+                <a href="{% url 'pomoc' %}" class="nav-link" style="display: inline !important;"><span style="font-size: large">Pomoć</span></a>&emsp;
+                <a href="{% url 'postavi_upit' %}" class="nav-link" style="display: inline    !important;"><span style="font-size: large">Postavite pitanje</span></a>
+            </div>
+
+            <div class="col-sm-5 text-end" style="margin-top: 8px;">
+
+                <a href="#nav"> <button class="btn btn-outline-light me-4">Vrati se na vrh</button> </a>
+            </div>
+        </div>
+    </footer>
+ </body>
+</html>

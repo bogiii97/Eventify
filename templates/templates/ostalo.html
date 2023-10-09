@@ -1,0 +1,46 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    <script type="text/javascript" src="{% static 'libraries/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'libraries/daterangepicker.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'libraries/daterangepicker.css' %}"/>
+    <script type="text/javascript" src="{% static 'scripts/ostalo.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/ostalo.css' %}">
+{% endblock %}
+
+{% block sadrzaj %}
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                <form action="" id="pretragaForm">
+                    {% csrf_token %}
+                    <div class="btn-group" role="group">
+                        <input type="text" name="grad" id="grad" placeholder="Grad">
+                        <input type="text" name="naziv" id="naziv" placeholder="Naziv">
+                        <input type="text" name="daterange" id="daterange" placeholder="Period" value=" - ">
+                    </div>
+                </form>
+            </div>
+            <div class="col-12 bez-pretrage">
+                {% for dogadjaj in dogadjaji %}
+                    <div class="row m-2 rounded border event-info">
+                      <div class="col-sm-2 p-0 text-start">
+                          <img class="img-fluid event-image rounded-1" src="{{ dogadjaj.slika.url }}" alt="">
+                      </div>
+                      <div class="col-sm-10">
+                          <h4>{{ dogadjaj.naziv }}</h4>
+                          <p class="mb-1">{{ dogadjaj.kratak_opis }}</p>
+                          <hr class="m-0 p-0">
+                          <p class="mb-1"><strong>Vreme: </strong>{{ dogadjaj.datum_vreme }}</p>
+                          <a href="{% url 'dogadjaj' dogadjaj.id %}" class="btn btn-light">Više detalja</a>
+                      </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-12 sa-pretragom d-none">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

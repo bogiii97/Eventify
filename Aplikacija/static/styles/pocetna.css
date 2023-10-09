@@ -1,0 +1,38 @@
+.card{
+    width: 18rem;
+    margin: 2px;
+    padding-left: 0;
+    padding-right: 0;
+    background-image: linear-gradient(navy, black);
+    color: white;
+    border: 1px white;
+}
+
+.card-img-top{
+    height: 300px;
+}
+
+.card-text{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  color: black;
+}
+
+h2{
+    font-family: "Century Gothic";
+    font-weight: bolder;
+    color: white;
+    background-color: rgba(0,0,0, 0.7);
+}
+
+body{
+    background-image: url("../../../media/slike/nove_pozadine/pozadina.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}

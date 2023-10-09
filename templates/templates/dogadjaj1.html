@@ -1,0 +1,104 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/dogadjaj.css' %}">
+    <script src="{% static 'scripts/dogadjaj.js' %}"></script>
+    <script type="text/javascript">
+        var tipovi = JSON.parse('{{ tipovi|escapejs }}');
+        var preostaloOdSvakogTipa = JSON.parse('{{ preostaloOdSvakogTipa|escapejs }}');
+        var dogadjaj_id = JSON.parse('{{ dogadjaj_id|escapejs }}');
+        var cene = JSON.parse('{{ cene|escapejs }}');
+    </script>
+{% endblock %}
+
+{% block sadrzaj %}
+    <div class="container">
+        <div class="event-header">
+            <h1 id="event-title">{{ dogadjaj.naziv }}</h1>
+            <p id="event-organizer">Organizator: <a href="{% url 'profil_organizatora' dogadjaj.organizator.id %}">{{ dogadjaj.organizator }}</a></p>
+            <p id="event-description">{{ dogadjaj.kratak_opis }}</p>
+        </div>
+
+        <div class="event-content">
+            <div class="event-image">
+                <img src="{{ dogadjaj.slika.url }}" alt="Event Image">
+            </div>
+            <div class="event-details">
+                <div class="event-info">
+                    <p><span class="info-label">Grad:</span> <span class="info-value">{{ dogadjaj.grad }}</span></p>
+                    <p><span class="info-label">Adresa:</span> <span class="info-value">{{ dogadjaj.adresa }}</span></p>
+                    <p><span class="info-label">Datum i vreme:</span> <span class="info-value">{{ dogadjaj.datum_vreme }}</span></p>
+                </div>
+                {% if dogadjaj.naziv_sporta %}
+                    <div class="event-sport">
+                        <p><span class="info-label">Naziv sporta:</span> <span class="info-value">{{ dogadjaj.naziv_sporta }}</span></p>
+                        <p><span class="info-label">Učesnici:</span> <span class="info-value">{{ dogadjaj.ucesnici }}</span></p>
+                    </div>
+                {% endif %}
+                {% if dogadjaj.izvodjac and not dogadjaj.vrsta_muzike %}
+                    <div class="event-music">
+                        <p><span class="info-label">Izvođač:</span> <span class="info-value">{{ dogadjaj.izvodjac }}</span></p>
+                    </div>
+                {% endif %}
+                {% if dogadjaj.zanr %}
+                    <div class="event-movie">
+                        <p><span class="info-label">Žanr:</span> <span class="info-value">{{ dogadjaj.zanr }}</span></p>
+                        <p><span class="info-label">Glumci:</span> <span class="info-value">{{ dogadjaj.glumci }}</span></p>
+                        <p><span class="info-label">Trajanje:</span> <span class="info-value">{{ dogadjaj.trajanje }}</span></p>
+                    </div>
+                {% endif %}
+                {% if dogadjaj.vrsta_muzike %}
+                    <div class="event-music">
+                        <p><span class="info-label">Vrsta muzike:</span> <span class="info-value">{{ dogadjaj.vrsta_muzike }}</span></p>
+                        <p><span class="info-label">Izvođač:</span> <span class="info-value">{{ dogadjaj.izvodjac }}</span></p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if imaProdajna %}
+            <div class="event-sales">
+                <h2>Prodajna mesta:</h2>
+                <ul class="sales-list">
+                    {% for prodajno_mesto in dogadjaj.prodaje_se.all %}
+                        <li>{{ prodajno_mesto.naziv }}, {{ prodajno_mesto.adresa }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <div class="event-description">
+            <p>{{ dogadjaj.opis }}</p>
+        </div>
+
+        <div class="event-tickets">
+            {% for karta in karte %}
+                <div class="ticket">
+                    <div class="ticket-info">
+                        <p><span class="info-label">Tip:</span> <span class="info-value">{{ karta.tip }}</span></p>
+                        <p><span class="info-label">Cena:</span> <span class="info-value">{{ karta.cena }}</span></p>
+                        <p>
+                            <span class="info-label">Količina:</span>
+                            <input type="text" style="width: 50px" id="{{ karta.tip }}">
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="total-price">
+                <h4>Ukupna cena: <span id="ukCena">0</span> din</h4>
+            </div>
+        </div>
+
+        <div class="event-tickets-left">
+            <h4>Preostalo karata:</h4>
+            {% for broj in preostaloOdSvakogTipa1 %}
+                <span id="{{ broj }}"></span>{{ broj }}&nbsp;
+            {% endfor %}
+        </div>
+        <div class="ticket-purchase text-center">
+            <div><button class="btn btn-light" id="kupi">Kupi kartu</button></div>
+            <span id="neMozeKupi" class="error-message"></span>
+        </div>
+    </div>
+{% endblock %}

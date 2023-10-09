@@ -1,0 +1,231 @@
+{% extends 'templates/sablon.html' %}
+{% block heder %}
+
+
+    {% load static %}
+    <script src="{% static 'scripts/registracija.js' %}"></script>
+
+    <style>
+        .alert-danger {
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .radio-label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 24px;
+            color: white;
+        }
+
+        .radio-label input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+        }
+
+        .radio-label:hover input ~ .checkmark {
+            background-color: #f2f2f2;
+        }
+
+        .radio-label input:checked ~ .checkmark {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .radio-label input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        .radio-label .checkmark:after {
+            top: 6px;
+            left: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+
+    </style>
+
+{% endblock %}
+
+{% block sadrzaj %}
+
+
+    <form id="registracijaForm" method="post" enctype="multipart/form-data" action="{% url 'register' %}">
+        {% csrf_token %}
+        <br><br>
+        <div class="col-sm-12 text-center mb-2">
+            <h4>Već imate nalog? <a href="{% url 'login' %}">Ulogujte se</a></h4>
+        </div>
+        <br>
+
+        <div class="col-sm-12 text-center">
+            <div class="form-group border rounded p-3">
+                <div class="row m-1">
+                    <div class="col" id="bla">
+                        <h1 class="mb-4">Registracija</h1>
+                    </div>
+                </div>
+                <br>
+                <div class="row m-1">
+                    <div class="col">
+                        <label class="form-label fw-bold h3">{{ form.username }}</label>
+                        {% if form.username.errors %}
+                            {% for error in form.username.errors %}
+                                {% if error == 'A user with that username already exists.' %}
+                                    <p class="error-message alert alert-danger">Već postoji registrovani korisnik sa ovim korisnickim imenom!</p>
+                                {% else %}
+                                    <p class="error-message alert alert-danger">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+
+                        <label class="form-label fw-bold h3">{{ form.email }}</label>
+                        {% if form.email.errors %}
+
+                            {% for error in form.email.errors %}
+                                {% if error == 'Korisnik with this Email already exists.' %}
+                                    <p class="error-message alert alert-danger">Već postoji registrovani korisnik sa ovim email-om!</p>
+                                {% else %}
+                                    <p class="error-message alert alert-danger">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+
+                        <label class="form-label fw-bold h3">{{ form.ime }}</label>
+                        {% if form.ime.errors %}
+                            <p class="error-message alert alert-danger">{{ form.ime.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+
+                        <label class="form-label fw-bold h3">{{ form.prezime }}</label>
+                        {% if form.prezime.errors %}
+                            <p class="error-message alert alert-danger">{{ form.prezime.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+                        <label class="form-label fw-bold h5" id="gradLabela">
+                            <select class="form-control" name="grad">
+                                {% for grad in form.grad.field.queryset %}
+                                    <option value="{{ grad.pk }}">{{ grad.naziv }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+                        <label class="form-label h5" id="slikaLabela"> Slika: {{ form.slika }}</label>
+                        {% if form.slika.errors %}
+                            <p class="error-message alert alert-danger">{{ form.slika.errors }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+                        <label class="form-label fw-bold h3">{{ form.password1 }}</label>
+                        {% if form.password1.errors %}
+
+                            {% for error in form.password1.errors %}
+                                {% if error == 'This password is too short. It must contain at least 8 characters.' %}
+                                    <p class="error-message alert alert-danger">Sifra je previse kratka. Mora imati bar 8 karaktera!</p>
+                                {% elif error == 'This password is entirely numeric.' %}
+                                    <p class="error-message alert alert-danger">Sifra ne sme imati samo numerike!</p>
+                                {% else %}
+                                    <p class="error-message alert alert-danger">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            
+
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row m-1">
+                    <div class="col">
+{#                        {{ form.password2.label_tag }}#}
+                        <label class="form-label fw-bold h3">{{ form.password2 }}</label>
+                        {% if form.password2.errors %}
+
+                            {% for error in form.password2.errors %}
+                                {% if error == 'The two password fields didn’t match.' %}
+                                <p class="error-message alert alert-danger">Ne poklapaju se sifre!</p>
+
+                                {% elif error == 'This password is too short. It must contain at least 8 characters.' %}
+                                    <p class="error-message alert alert-danger">Šifra je previše kratka. Mora imati bar
+                                        8 karaktera!</p>
+                                {% elif error == 'This password is entirely numeric.' %}
+                                    <p class="error-message alert alert-danger">Šifra ne sme imati samo numerike!</p>
+                                {% else %}
+                                    <p class="error-message alert alert-danger">{{ error }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col">
+                        <label class="radio-label">
+                            Običan korisnik
+                            <input type="radio" name="izborTipaKorisnika" id="korisnikId" value="korisnik" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        &emsp;
+                        <label class="radio-label">
+                            Organizator
+                            <input type="radio" name="izborTipaKorisnika" id="organizatorId" value="organizator">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row m-1">
+                    <div class="col">
+                        <input type="submit" class="btn btn-light m-2 btn-lg btn-xl" value="Registruj se">
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </form>
+{% endblock %}

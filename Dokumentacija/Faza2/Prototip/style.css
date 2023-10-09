@@ -1,0 +1,14 @@
+.event-image{
+    background-image: url(images/event.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.event-text{
+    font-size: 40px;
+}
+
+.star{
+    font-size: 200%;
+    color: #385170;
+}

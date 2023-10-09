@@ -1,0 +1,16 @@
+body {
+    background-image: url("../../../media/slike/nove_pozadine/sport-pozadina.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.event-info{
+    background-image: linear-gradient(rgb(0,0,113, 0.6), rgba(0,0,0, 0.6)) ;
+    color: white;
+
+}
+
+.event-image{
+    height: 100%;
+    object-fit: cover;
+}

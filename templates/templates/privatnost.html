@@ -1,0 +1,56 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+
+    <style>
+        body {
+            background-image: url("../../media/slike/nove_pozadine/pozadina.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .larger-font {
+            font-size: 1.2em;
+        }
+
+    </style>
+
+
+{% endblock %}
+
+{% block sadrzaj %}
+<div class="container fluid"><div class="text-center mt-4">
+  <h2 class="font-weight-bold text-yellow">Politika privatnosti</h2>
+</div>
+<div class="border border-yellow p-4 mt-4">
+  <ul class="text-white larger-font custom-list">
+    <li>
+      Vaša privatnost nam je veoma važna. Obećavamo da ćemo zaštititi vaše lične podatke i koristiti ih samo u skladu sa našom politikom privatnosti.
+    </li>
+    <hr>
+    <li>
+      Sve informacije koje nam pružite prilikom korišćenja naše platforme biće tretirane sa strogo poverljivošću i neće biti deljene ili prodavane trećim licima bez vašeg pristanka.
+    </li>
+    <hr>
+    <li>
+      Podaci koje prikupljamo od vas koriste se isključivo u svrhe obrade vaših narudžbina, pružanja podrške korisnicima i poboljšanja naših usluga.
+    </li>
+    <hr>
+    <li>
+      Vaše lične podatke čuvamo na sigurnim serverima i primenjujemo odgovarajuće mere bezbednosti kako bismo sprečili neovlašćeni pristup ili otkrivanje.
+    </li>
+    <hr>
+    <li>
+      U svakom trenutku imate pravo da pristupite, ispravite ili obrišete svoje lične podatke iz naše baze. Molimo vas da nas kontaktirate za više informacija o tome kako ostvariti ova prava.
+    </li>
+  </ul>
+</div>
+
+
+</div>
+
+{% endblock %}

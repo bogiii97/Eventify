@@ -1,0 +1,198 @@
+{
+  "id": "71e5ee2c-1d34-4cf1-9089-35d9446adf56",
+  "version": "2.0",
+  "name": "SSU_Administriranje",
+  "url": "http://127.0.0.1:8000/admin",
+  "tests": [{
+    "id": "a1dab80d-7f8a-408d-b324-a74e15a5b176",
+    "name": "TP Neuspesno logovanje",
+    "commands": [{
+      "id": "b8e95b1a-5ad3-4747-8917-2d46caadc364",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin/login/?next=/admin/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d700a940-8e8d-4059-af85-5a9bd4de7e17",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "7de39489-9988-4203-902c-f54df026dda8",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_username",
+      "targets": [
+        ["id=id_username", "id"],
+        ["name=username", "name"],
+        ["css=#id_username", "css:finder"],
+        ["xpath=//input[@id='id_username']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "vladan"
+    }, {
+      "id": "6a8c1646-a7e1-41f4-a1d3-f796de625248",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_password",
+      "targets": [
+        ["id=id_password", "id"],
+        ["name=password", "name"],
+        ["css=#id_password", "css:finder"],
+        ["xpath=//input[@id='id_password']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "d62c8c3d-29e5-438f-bcdd-e7691c6854f9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.login",
+      "targets": [
+        ["css=.login", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2feec98b-e0ba-4f20-8891-6d537dc5b45c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.submit-row > input",
+      "targets": [
+        ["css=.submit-row > input", "css:finder"],
+        ["xpath=//input[@value='Log in']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8e31f76b-dd91-467f-99b6-1c9f91389883",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_password",
+      "targets": [
+        ["id=id_password", "id"],
+        ["name=password", "name"],
+        ["css=#id_password", "css:finder"],
+        ["xpath=//input[@id='id_password']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "7f5a425f-85b1-4886-858f-c8cef35c4ae3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=.errornote",
+      "targets": [
+        ["css=.errornote", "css:finder"],
+        ["xpath=//div[@id='content']/p", "xpath:idRelative"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Please enter the correct username and password for a staff account. Note that both fields may be case-sensitive.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "1ce7d813-95e4-4722-9739-0eee64f19bc8",
+    "name": "TP Uspesno logovanje",
+    "commands": [{
+      "id": "650db0e5-2f40-4828-9e85-94be157ee290",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/admin/login/?next=/admin/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "b24acfdc-8236-4ea2-b9dc-f6bb82de4c5f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1536x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8434978b-f7de-49a1-b1bd-0bbc35ee576c",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_username",
+      "targets": [
+        ["id=id_username", "id"],
+        ["name=username", "name"],
+        ["css=#id_username", "css:finder"],
+        ["xpath=//input[@id='id_username']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "vladan"
+    }, {
+      "id": "9ece73b3-897a-4bcb-a4d2-abf98ad84f1e",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_password",
+      "targets": [
+        ["id=id_password", "id"],
+        ["name=password", "name"],
+        ["css=#id_password", "css:finder"],
+        ["xpath=//input[@id='id_password']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "123"
+    }, {
+      "id": "cb892451-ed2f-476f-a601-25a1863d6b2d",
+      "comment": "",
+      "command": "type",
+      "target": "id=id_username",
+      "targets": [
+        ["id=id_username", "id"],
+        ["name=username", "name"],
+        ["css=#id_username", "css:finder"],
+        ["xpath=//input[@id='id_username']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div/input", "xpath:idRelative"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "admin"
+    }, {
+      "id": "e490959f-bd98-47fd-8fcb-1f66b3a3f08a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.submit-row > input",
+      "targets": [
+        ["css=.submit-row > input", "css:finder"],
+        ["xpath=//input[@value='Log in']", "xpath:attributes"],
+        ["xpath=//form[@id='login-form']/div[3]/input", "xpath:idRelative"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "25f003eb-32cb-4a13-8ae1-46354cfd0e54",
+      "comment": "",
+      "command": "assertText",
+      "target": "linkText=Django administration",
+      "targets": [
+        ["linkText=Django administration", "linkText"],
+        ["css=#site-name > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Django administration')]", "xpath:link"],
+        ["xpath=//h1[@id='site-name']/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/admin/')]", "xpath:href"],
+        ["xpath=//h1/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Django administration')]", "xpath:innerText"]
+      ],
+      "value": "Django administration"
+    }]
+  }],
+  "suites": [{
+    "id": "05eda6e2-eb75-4d76-80b3-c6871a7d177d",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/admin"],
+  "plugins": []
+}

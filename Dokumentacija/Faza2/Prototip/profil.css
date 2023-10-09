@@ -1,0 +1,42 @@
+h1 {
+    color: chocolate;
+    text-align: left;
+}
+
+.my-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.my-button:hover {
+    background-color: darkblue;
+  }
+  
+.my-button:active {
+    background-color: green;
+}
+h1 {
+    color: chocolate;
+    text-align: left;
+}
+
+.my-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.my-button:hover {
+    background-color: darkblue;
+  }
+  
+.my-button:active {
+    background-color: green;
+}

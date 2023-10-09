@@ -1,0 +1,124 @@
+.profil{
+    margin: 5px;
+    border-color: white;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.profilna_slika{
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%;
+    margin-top: 15%;
+}
+
+
+.btn:hover{
+    background-color: lightgray;
+}
+
+.btn{
+    color: white;
+}
+
+.btn.aktivirano{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: 2px solid white;
+}
+
+input{
+    border: 1px solid lightgray;
+}
+
+input:focus{
+    outline: none;
+    border: 2px solid lightgray;
+}
+
+.dogadjaj{
+    margin: 5px;
+    border-bottom-color: white;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.recenzija_forma{
+    border: 1px solid lightgray;
+}
+
+.recenzija_forma:focus{
+    outline: none;
+    border: 2px solid lightgray;
+}
+
+.event-container {
+  max-height: 500px;
+  overflow-y: scroll;
+    margin: 5px;
+}
+
+
+.profile-picture {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid white;
+      margin-top: 10px;
+    }
+
+.profile-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid white;
+    }
+
+.profile-heading {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+.event-card {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid white;
+    }
+
+.event-picture {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px 0 0 10px;
+    }
+
+.event-details {
+      flex: 1;
+      padding: 10px;
+    }
+
+.recension-card {
+      margin-bottom: 10px;
+      padding: 10px;
+      color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid white;
+    }
+
+.ime-organizatora{
+  font-size: 14px;
+  color: #ccc;
+}
+
+.btn.btn-light{
+    color: black;
+}

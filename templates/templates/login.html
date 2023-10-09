@@ -1,0 +1,57 @@
+{% extends 'templates/sablon.html' %}
+
+{% block heder %}
+    {% load static %}
+    <script src="{% static 'scripts/login.js' %}"></script>
+{% endblock %}
+
+{% block sadrzaj %}
+
+
+    <form novalidate method="post" id="login-form">
+        {% csrf_token %}
+        <br><br>
+        <div class="col-sm-12 text-center mb-2">
+            <h4>Nemate nalog? <a href="{% url 'register' %}">Registrujte se</a></h4>
+        </div>
+        <br>
+
+        <div class="col-sm-12 text-center">
+            <div class="m-2">
+                <div class="form-group border rounded p-3">
+                    <div class="row m-1">
+                        <div class="col" id="bla">
+                            <h1 class="mb-4">Prijava</h1>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row m-1">
+                        <div class="col">
+                            <label class="form-label fw-bold h3" id="korisnicko_ime_id">Korisničko ime: {{ form.username }}</label>
+                        </div>
+                    </div>
+                    <div class="row m-1">
+                        <div class="col">
+                            <label class="form-label fw-bold h3" id="sifra_id">Šifra: {{ form.password }}</label>
+                        </div>
+                    </div>
+
+                    <div class="row m-1">
+                        <div class="col">
+                            <span class="error-message" id="korisnicko-ime-error" style="color: red; font-size: 1.2em;"></span><br>
+                            <span class="error-message" id="sifra-error" style="color: red; font-size: 1.2em;"></span>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row m-1">
+                        <div class="col">
+                            <input type="submit" class="btn btn-light btn-lg btn-xl" value="Prijavi se">
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

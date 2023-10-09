@@ -1,0 +1,53 @@
+body {
+    background-image: url("../../../media/slike/nove_pozadine/pozadina.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+}
+
+.navbar-nav .nav-link:hover {
+    color: gray; /* Zatamnjenje pravougaonika prilikom prelaska preko linka */
+}
+
+.navbar-nav .nav-link.active{
+    color : gray;
+}
+
+#footerId {
+    background-color: rgba(0, 0, 0, 0.7); /* Boja pozadine navbara */
+    font-size: 22px; /* Veličina fonta */
+    color: white;
+}
+
+#footerId a:hover {
+    color: gray;
+}
+
+
+#nav {
+    margin-left: 22px;
+}
+
+.link-image {
+    width: 50px;
+    height: 50px;
+}
+
+.daterangepicker{
+    color: black!important;
+}
+
+.daterangepicker td.active{
+    color: black!important;
+    background-color: rgba(13, 110, 253)!important;
+}

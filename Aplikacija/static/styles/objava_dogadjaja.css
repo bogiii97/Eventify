@@ -1,0 +1,43 @@
+.container{
+    background-image: linear-gradient(rgb(0,0,113, 0.6), rgba(0,0,0, 0.6)) ;
+    color: white;
+
+}
+
+.form-info{
+    font-weight: bold;
+}
+
+.zurka-pozadina{
+    background-image: url("../../../media/slike/nove_pozadine/zurka-pozadina.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.sport-pozadina{
+    background-image: url("../../../media/slike/nove_pozadine/sport-pozadina.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.muzika-pozadina{
+    background-image: url("../../../media/slike/nove_pozadine/muzika-pozadina.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pozoriste-pozadina{
+    background-image: url("../../../media/slike/nove_pozadine/pozoriste-pozadina.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ostalo-pozadina{
+    background-image: url("../../../media/slike/nove_pozadine/ostalo-pozadina.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#novaKarta{
+    margin-left: 15px;
+}
